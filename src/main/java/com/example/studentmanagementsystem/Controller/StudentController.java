@@ -17,6 +17,20 @@ public class StudentController {
 
     //Handler Method to handle list students and return mode and view
 
+
+
+    //just to test api
+    @GetMapping("/test")
+    public String test(){
+        return "Welcome to Cloud";
+    }
+
+    @GetMapping("/")
+    public String redirectToStudents() {
+        return "redirect:/students";
+    }
+
+
     @GetMapping("/students")
     public String listStudent(Model model){
         model.addAttribute("students",studentService.getAllStudents());

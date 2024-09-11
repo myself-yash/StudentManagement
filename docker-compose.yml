@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  mysql-db:
+    image: mysql:8.1.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: studentManagementSystem
+      MYSQL_USER: yash
+      MYSQL_PASSWORD: yash123
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - spring-mysql-net
+
+  spring-boot-app:
+    image: studentmanagement
+    container_name: studentcontainer
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/studentManagementSystem
+      SPRING_DATASOURCE_USERNAME: yash
+      SPRING_DATASOURCE_PASSWORD: yash123
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db
+    networks:
+      - spring-mysql-net
+
+networks:
+  spring-mysql-net:
+    external: true
+
+volumes:
+  mysql-data:

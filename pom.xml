@@ -65,7 +65,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>SMS</finalName>
+        <finalName>SMS2</finalName>
     </build>
 
 </project>
